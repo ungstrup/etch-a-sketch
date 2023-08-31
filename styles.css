@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(126, 125, 125);
+}
+
+#container {
+    margin: auto;
+    display: flex;
+    width: 960px;
+    height: 960px;
+}
+.boxwidth {
+    width: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+}
+
+.square {
+    flex: 1;
+    background-color: aliceblue;
+}
+
+.hover {
+    background-color: black;
+}
