@@ -2,6 +2,19 @@ body {
     background-color: rgb(126, 125, 125);
 }
 
+#buttoncontainer {
+    text-align: center;
+}
+
+#resetbutton {
+    font-size: 20px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: rgb(5, 161, 96);
+    color: aliceblue;
+}
+
 #container {
     margin: auto;
     display: flex;

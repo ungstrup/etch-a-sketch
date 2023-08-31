@@ -12,12 +12,26 @@ function generateGrid (grid){
             gridWidth.appendChild(box);
         };
     };
-};
-
-generateGrid(10);
-const squares = document.querySelectorAll('.square');
-squares.forEach((square) => {
-    square.addEventListener('mouseover', () => {
-        square.classList.add('hover');
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square) => {
+        square.addEventListener('mouseover', () => {
+            square.classList.add('hover');
+        });
     });
+};
+//generate 16x16 grid by default
+generateGrid(16);
+
+//button functionality to generate custom grid
+const resetButton = document.querySelector('#resetbutton');
+resetButton.addEventListener('click', () => {
+    resetGrid();
+    generateGrid(+prompt('How many squares per side? (max 100)'));
 });
+
+//helper function to clean up grid before making a new one
+function resetGrid () {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    };
+};
