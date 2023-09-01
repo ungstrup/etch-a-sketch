@@ -1,14 +1,20 @@
 body {
     background-color: rgb(126, 125, 125);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#buttoncontainer {
+#buttoncontainer, #checkcontainer {
     text-align: center;
 }
 
-#resetbutton, #randombutton {
-    font-size: 25px;
+#checkcontainer {
     margin-bottom: 30px;
+}
+
+#resetbutton {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 0px;
     background-color: rgb(5, 161, 96);
@@ -21,6 +27,12 @@ body {
     width: 960px;
     height: 960px;
 }
+
+.text {
+    color: aliceblue;
+    font-size: 18px;
+}
+
 .boxwidth {
     width: 0px;
     display: flex;

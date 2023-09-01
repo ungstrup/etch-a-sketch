@@ -1,6 +1,8 @@
 const container = document.querySelector('#container');
+const resetButton = document.querySelector('#resetbutton');
+const randomEnable = document.getElementById('randomradio');
+const darkEnable = document.getElementById('darkradio');
 let randomColors = [];
-let randomEnable = 0;
 
 function generateGrid (grid){
     if (grid > 100) return;
@@ -17,13 +19,14 @@ function generateGrid (grid){
     const squares = document.querySelectorAll('.square');
     squares.forEach((square) => {
         square.addEventListener('mouseover', () => {
-            if (randomEnable == 1){
+            if (randomEnable.checked){
                 randomColor ();
                 square.setAttribute('style', `background-color: rgb(${randomColors[0]},${randomColors[1]},${randomColors[2]})`);
-            }
-            else {
+            }else if (darkEnable.checked){
+                darkening(square);
+            }else {
                 square.setAttribute('style', `background-color: black`);
-            }
+            };
         });
     });
 };
@@ -31,20 +34,10 @@ function generateGrid (grid){
 generateGrid(16);
 
 //button functionality to generate custom grid
-const resetButton = document.querySelector('#resetbutton');
 resetButton.addEventListener('click', () => {
     resetGrid();
     generateGrid(+prompt('How many squares per side? (max 100)'));
 });
-
-const randomButton = document.querySelector('#randombutton');
-randomButton.addEventListener('click', () => {
-    if (randomEnable == 0) {
-        randomEnable = 1;
-    } else {
-        randomEnable = 0;
-    }
-})
 
 //helper function to clean up grid before making a new one
 function resetGrid () {
@@ -52,11 +45,20 @@ function resetGrid () {
         container.removeChild(container.firstChild);
     };
 };
-
+//generate rgb values as a random array
 function randomChoice () {
     return Math.floor(Math.random() * 256);
 };
-
 function randomColor () {
     randomColors = [randomChoice(),randomChoice(),randomChoice()];
+};
+
+//gradually add opacity for a darkening/ burn effect
+function darkening (current) {
+    if (current.style.opacity == 0){
+        current.setAttribute('style', 'background-color: rgb(0,0,0); opacity: 0.1');
+    } else if (current.style.opacity < 1){
+        current.style.opacity = parseFloat(current.style.opacity) + 0.1;
+    }
+    return;
 };
