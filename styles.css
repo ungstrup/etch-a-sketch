@@ -6,7 +6,7 @@ body {
     text-align: center;
 }
 
-#resetbutton {
+#resetbutton, #randombutton {
     font-size: 25px;
     margin-bottom: 30px;
     border-radius: 5px;

@@ -1,4 +1,6 @@
 const container = document.querySelector('#container');
+let randomColors = [];
+let randomEnable = 0;
 
 function generateGrid (grid){
     if (grid > 100) return;
@@ -15,7 +17,13 @@ function generateGrid (grid){
     const squares = document.querySelectorAll('.square');
     squares.forEach((square) => {
         square.addEventListener('mouseover', () => {
-            square.classList.add('hover');
+            if (randomEnable == 1){
+                randomColor ();
+                square.setAttribute('style', `background-color: rgb(${randomColors[0]},${randomColors[1]},${randomColors[2]})`);
+            }
+            else {
+                square.setAttribute('style', `background-color: black`);
+            }
         });
     });
 };
@@ -29,9 +37,26 @@ resetButton.addEventListener('click', () => {
     generateGrid(+prompt('How many squares per side? (max 100)'));
 });
 
+const randomButton = document.querySelector('#randombutton');
+randomButton.addEventListener('click', () => {
+    if (randomEnable == 0) {
+        randomEnable = 1;
+    } else {
+        randomEnable = 0;
+    }
+})
+
 //helper function to clean up grid before making a new one
 function resetGrid () {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     };
+};
+
+function randomChoice () {
+    return Math.floor(Math.random() * 256);
+};
+
+function randomColor () {
+    randomColors = [randomChoice(),randomChoice(),randomChoice()];
 };
