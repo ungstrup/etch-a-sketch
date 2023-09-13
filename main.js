@@ -18,14 +18,16 @@ function generateGrid (grid){
     };
     const squares = document.querySelectorAll('.square');
     squares.forEach((square) => {
-        square.addEventListener('mouseover', () => {
-            if (randomEnable.checked){
-                randomColor ();
-                square.setAttribute('style', `background-color: rgb(${randomColors[0]},${randomColors[1]},${randomColors[2]})`);
-            }else if (darkEnable.checked){
-                darkening(square);
-            }else {
-                square.setAttribute('style', `background-color: black`);
+        square.addEventListener('mouseover', (e) => {
+            if (e.buttons == 1){  
+                if (randomEnable.checked){
+                    randomColor ();
+                    square.setAttribute('style', `background-color: rgb(${randomColors[0]},${randomColors[1]},${randomColors[2]})`);
+                }else if (darkEnable.checked){
+                    darkening(square);
+                }else {
+                    square.setAttribute('style', `background-color: black`);
+                };
             };
         });
     });
